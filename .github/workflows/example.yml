@@ -1,4 +1,4 @@
-name: match process
+name: example
 
 on:
   workflow_dispatch:
