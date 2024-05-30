@@ -2,6 +2,15 @@ name: example
 
 on:
   workflow_dispatch:
+    inputs:
+      param1:
+        description: 'Description for param1'
+        required: true
+        default: 'default_value1'
+      param2:
+        description: 'Description for param2'
+        required: true
+        default: 'default_value2'
 
 env:
   # Google sheet secrets
@@ -33,4 +42,4 @@ jobs:
 
       - name: running match process
         run: |
-          python main.py
+          python main.py --param1 ${{ github.event.inputs.param1 }} --param2 ${{ github.event.inputs.param2 }}
