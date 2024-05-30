@@ -6,7 +6,7 @@ on:
       param1:
         description: 'Description for param1'
         required: true
-        # default: 'default_value1'
+        default: 'default_value1'
       param2:
         description: 'Description for param2'
         required: true
