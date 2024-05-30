@@ -40,6 +40,9 @@ jobs:
         run: |
           pip install -r requirements.txt 
 
-      - name: running match process
+      - name: running example
+        env:
+          param1: ${{ github.event.inputs.param1 }}
+          param2: ${{ github.event.inputs.param2 }}
         run: |
-          python main.py --param1 ${{ github.event.inputs.param1 }} --param2 ${{ github.event.inputs.param2 }}
+          python main.py
