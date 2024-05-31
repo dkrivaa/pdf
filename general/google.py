@@ -11,11 +11,12 @@ def open_google():
     credentials_json_string = os.environ.get('credentials_json_string')
     credentials_json = json.loads(base64.b64decode(credentials_json_string))
     sheet_id = os.environ.get('sheet_id')
+    # Collect all environment variables that start with 'param'
+    params = {key: os.environ[key] for key in os.environ if key.startswith('param')}
+    # param1 = os.environ.get('param1')
+    # param2 = os.environ.get('param2')
 
-    param1 = os.environ.get('param1')
-    param2 = os.environ.get('param2')
-
-    print(param1, param2)
+    print(f'Parameters: {params}')
 
     scopes = ["https://www.googleapis.com/auth/spreadsheets"]
 
