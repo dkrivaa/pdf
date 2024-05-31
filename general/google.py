@@ -13,8 +13,6 @@ def open_google():
     sheet_id = os.environ.get('sheet_id')
     # Collect all environment variables that start with 'param'
     params = {key: os.environ[key] for key in os.environ if key.startswith('param')}
-    # param1 = os.environ.get('param1')
-    # param2 = os.environ.get('param2')
 
     print(f'Parameters: {params}')
 
