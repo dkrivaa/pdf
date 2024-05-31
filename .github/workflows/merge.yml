@@ -39,7 +39,7 @@ jobs:
           for key in $(jq -r 'keys[]' input_params.json); do
             value=$(jq -r --arg key "$key" '.[$key]' input_params.json)
             echo "Setting $key=$value"
-            echo "::set-env name=$key::$value"
+            echo "$key=$value" >> $GITHUB_ENV
           done
 
       - uses: actions/cache@v3
@@ -49,7 +49,6 @@ jobs:
           key: ubuntu-latest-python-${{ hashFiles('requirements.txt') }}-basic
 
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: |
           pip install -r requirements.txt 
 
