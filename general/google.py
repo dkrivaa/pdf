@@ -23,5 +23,5 @@ def open_google():
 
     book = client.open_by_key(sheet_id)
 
-    return book
+    return book, params
 
