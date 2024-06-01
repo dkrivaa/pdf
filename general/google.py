@@ -14,8 +14,6 @@ def open_google():
     # Collect all environment variables that start with 'param'
     params = {key: os.environ[key] for key in os.environ if key.startswith('param')}
 
-    print(f'Parameters: {params}')
-
     scopes = ["https://www.googleapis.com/auth/spreadsheets"]
 
     creds = Credentials.from_service_account_info(credentials_json, scopes=scopes)
