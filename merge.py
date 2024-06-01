@@ -33,9 +33,6 @@ for file in file_list:
         for page_num in range(pdf.page_count):
             merged_pdf.insert_pdf(pdf, from_page=page_num, to_page=page_num)
 
-        # closing the current pdf_doc
-        pdf.close()
-
 # Reading and saving merged pdf into buffer
 pdf_buffer = io.BytesIO
 merged_pdf.save(pdf_buffer)
