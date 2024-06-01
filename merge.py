@@ -1,5 +1,6 @@
 from io import BytesIO
 import os
+import base64
 import pymupdf
 import requests
 
@@ -48,6 +49,7 @@ pdf_string = pdf_buffer.getvalue()
 # Closing buffer
 pdf_buffer.close()
 
-print(pdf_string)
+# Convert the binary string to a format that can be inserted into a cell
+pdf_base64 = base64.b64encode(pdf_string).decode('utf-8')
 
-# book.worksheet('pdf').update_cell(1, 1, pdf_string)
+book.worksheet('pdf').update_cell(1, 1, pdf_string)
