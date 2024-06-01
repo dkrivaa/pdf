@@ -1,5 +1,5 @@
 import io
-
+import os
 import pymupdf
 import requests
 
@@ -17,26 +17,33 @@ file_list = []
 for url in downloadUrls:
     response = requests.get(url)
     if response.status_code == 200:
-        print(response.content)
-        file_list.append(response.content)
+        # Create a temporary file to save the PDF content
+        file_name = os.path.basename(url)
+        with open(file_name, 'wb') as pdf_file:
+            pdf_file.write(response.content)
+            file_list.append(file_name)
 
 # Creating new empty pdf
 merged_pdf = pymupdf.open()
 
 # Adding the files to empty pdf
 for file in file_list:
-    pdf_doc = pymupdf.open(file)
-    # Append each page to the merged pdf
-    for page_num in range(pdf_doc.page_count):
-        merged_pdf.insert_pdf(pdf_doc, from_page=page_num, to_page=page_num)
+    with pymupdf.open(file) as pdf:
+        # Append each page to the merged pdf
+        for page_num in range(pdf.page_count):
+            merged_pdf.insert_pdf(pdf, from_page=page_num, to_page=page_num)
 
     # closing the current pdf_doc
-    pdf_doc.close()
+    pdf.close()
 
 # Reading and saving merged pdf into buffer
 pdf_buffer = io.BytesIO
 merged_pdf.save(pdf_buffer)
 merged_pdf.close()
+
+# Clean up temporary files
+for file in file_list:
+    os.remove(file)
 
 # Writing merged pdf to binary string
 pdf_string = pdf_buffer.getvalue()
