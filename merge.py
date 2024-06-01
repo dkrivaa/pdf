@@ -18,7 +18,7 @@ for url in downloadUrls:
     response = requests.get(url)
     if response.status_code == 200:
         # Create a temporary file to save the PDF content
-        file_name = os.path.basename(url)
+        file_name = os.path.basename(url)[-5:] + '.pdf'
         with open(file_name, 'wb') as pdf_file:
             pdf_file.write(response.content)
             file_list.append(file_name)
