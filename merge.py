@@ -48,4 +48,6 @@ pdf_string = pdf_buffer.getvalue()
 # Closing buffer
 pdf_buffer.close()
 
-book.worksheet('pdf').update_cell(1, 1, pdf_string)
+print(pdf_string)
+
+# book.worksheet('pdf').update_cell(1, 1, pdf_string)
