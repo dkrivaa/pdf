@@ -54,4 +54,4 @@ jobs:
 
       - name: running merge
         run: |
-          python main.py
+          python merge.py
