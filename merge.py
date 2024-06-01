@@ -1,4 +1,4 @@
-import io
+from io import BytesIO
 import os
 import pymupdf
 import requests
@@ -34,7 +34,7 @@ for file in file_list:
             merged_pdf.insert_pdf(pdf, from_page=page_num, to_page=page_num)
 
 # Reading and saving merged pdf into buffer
-pdf_buffer = io.BytesIO
+pdf_buffer = BytesIO()
 merged_pdf.save(pdf_buffer)
 merged_pdf.close()
 
