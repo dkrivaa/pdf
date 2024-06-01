@@ -52,4 +52,4 @@ pdf_buffer.close()
 # Convert the binary string to a format that can be inserted into a cell
 pdf_base64 = base64.b64encode(pdf_string).decode('utf-8')
 
-book.worksheet('pdf').update_cell(1, 1, pdf_string)
+book.worksheet('pdf').update_cell(1, 1, pdf_base64)
