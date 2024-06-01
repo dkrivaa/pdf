@@ -13,7 +13,12 @@ print(params)
 downloadUrls = list(params.values())
 
 # Getting the files to merge
-file_list = [requests.get(x) for x in downloadUrls if requests.status_codes == 200]
+file_list = []
+for url in downloadUrls:
+    response = requests.get(url)
+    if response.status_code == 200:
+        print(response.content)
+        file_list.append(response.content)
 
 # Creating new empty pdf
 merged_pdf = pymupdf.open()
